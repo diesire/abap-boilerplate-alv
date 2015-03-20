@@ -1,0 +1,71 @@
+<!-- Input                                -->
+<form role="form" name="alv_app" class="form">
+    <div class="form-group" ng-class="{'has-error': alv_app.reportName.$invalid && !alv_app.reportName.$pristine, 'has-success': alv_app.reportName.$valid && !alv_app.reportName.$pristine}">
+        <label class="control-label" for="reportName">Report</label>
+        <input type="text" class="form-control" id="report.name" name="reportName" placeholder="ZTEST1" ng-model="report.name" ng-change="generate()" ng-Pattern="/^[zZ]\w+/" required/>
+
+        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="alv_app.reportName.$error.required && !alv_app.reportName.$pristine"></span>
+        <div class="alert alert-danger" ng-show="alv_app.reportName.$error.required && !alv_app.reportName.$pristine">El nombre del Report es obligatorio</div>
+    </div>
+
+
+    <!-- Global libraries -->
+    <div class="form-group">
+        <label>
+            <input type="checkbox" ng-model="zcl_util_alv.inDictionary" ng-change="generate()">Usar zcl_util_alv de diccionario
+        </label>
+    </div>
+    <div class="form-group">
+        <label>
+            <input type="checkbox" ng-model="zcl_util_ctx.inDictionary" ng-change="generate()">Usar zcl_util_ctx de diccionario
+        </label>
+    </div>
+
+
+    <!-- Data types -->
+    <div class="form-group">
+        <label for="tableType">Tipo de tabla</label>
+        <input type="text" class="form-control" id="tableType" placeholder="BAPIRET2_TAB" ng-model="types.table" ng-change="generate()" />
+    </div>
+    <div class="form-group">
+        <label for="lineType">Tipo de linea</label>
+        <input type="text" class="form-control" id="lineType" placeholder="BAPIRET2" ng-model="types.line" ng-change="generate()" />
+    </div>
+
+    <!-- Column names -->
+    <div class="form-group">
+        <label for="lineType">Columnas</label>
+        <textarea class="form-control" rows="3" id="lineElements" placeholder="TYPE MESSAGE" ng-model="columnsRaw" ng-change="generate()"></textarea>
+    </div>
+
+
+    <!-- Data Input -->
+    <label for="container-ace-dataInput">Carga de datos</label>
+    <div id="container-ace-dataInput " class="panel panel-default container-ace container-ace-small">
+        <div class="panel-heading ">
+            <pre>
+method get_data
+    exporting et_data type {{types.table}}</pre>
+        </div>
+        <div class="panel-body " ui-ace="{ useWrapMode : true, showGutter: true, theme: 'eclipse', mode: 'abap', onLoad: aceLoaded, onChange: aceChanged }" ng-model="dataInput.source">
+        </div>
+    </div>
+</form>
+
+<div
+    <h1>Código generado</h1>
+    <!-- Code generation -->
+    <!-- All in One -->
+    <div id="container-ace-allInOne " class="panel panel-default container-ace container-ace-large">
+        <div class="panel-heading ">Report {{report.name}}</div>
+        <div class="panel-body " ui-ace="{ useWrapMode : true, showGutter: true, theme: 'eclipse', mode: 'abap', onLoad: aceLoaded, onChange: aceChanged }" ng-model="result">
+        </div>
+    </div>
+
+    <!-- DynPro 9000 -->
+    <div id="container-ace-screen9000 " class="panel panel-default container-ace container-ace-medium">
+        <div class="panel-heading ">Dynpro 9000</div>
+        <div class="panel-body " ui-ace="{ useWrapMode : true, showGutter: true, theme: 'eclipse', mode: 'abap', onLoad: aceLoaded, onChange: aceChanged }" ng-model="screen9000.gen">
+        </div>
+    </div>
+</div>

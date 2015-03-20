@@ -1,0 +1,16 @@
+/* app css stylesheet */
+
+/*
+#container-ace {
+    overflow: visible;
+}
+*/
+.container-ace-small .ace_editor {
+    height: 100px;
+}
+.container-ace-medium .ace_editor {
+    height: 300px;
+}
+.container-ace-large .ace_editor {
+    height: 500px;
+}
